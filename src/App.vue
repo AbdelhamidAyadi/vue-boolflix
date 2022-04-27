@@ -67,12 +67,14 @@
 
   header {
     position: fixed;
+    z-index: 1;
     width: 100%;
 
   }
 
   main {
     padding-top: 80px;
+    
   }
 
   .body {

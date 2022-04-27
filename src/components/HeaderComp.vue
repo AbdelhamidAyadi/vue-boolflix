@@ -1,11 +1,13 @@
 <template>
-  <div class="container_costum">
+  <div class="container_father">
+    <div class="container_costum">
     <p>
       BOOLFLIX
     </p>
     <form action="">
-      <input placeholder="Search" v-model="search" type="text" @keyup="$emit('search', search)">
+      <input placeholder="Search" v-model="search" type="text" @keydown.enter.prevent="$emit('search', search)">
     </form>
+  </div>
   </div>
 </template>
 
@@ -26,6 +28,7 @@
 </script>
 
 <style scoped lang="scss">
+
   .container_costum {
     display: flex;
     justify-content: space-between;
@@ -44,6 +47,7 @@
     }
 
     input {
+      color: white;
       margin: 0 15px;
       padding: 0 10px;
       border-radius: 5px;
