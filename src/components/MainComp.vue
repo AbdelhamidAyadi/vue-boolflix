@@ -1,23 +1,12 @@
 <template>
   <div>
 
-
-
-
-    <div v-if="success">
-      <MovieComp  :movies="movies" />
+    <div >
+      <MovieComp  :movies="movies" :series="series" />
     </div>
 
 
-
-
-
-
-    <div v-else class="loading">
-      <div class="spinner-border" role="status">
-
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -29,7 +18,8 @@
   export default {
     name: 'MainComp',
     props: {
-      movies: Array
+      movies: Array,
+      series:Array
 
 
     },
@@ -38,7 +28,7 @@
     },
     data() {
       return {
-        success: true
+        
       }
     },
     created() {
@@ -57,16 +47,5 @@
 
 <style scoped lang="scss">
 
-  .loading {
-    .spinner-border {
-      width: 5rem;
-      height: 5rem;
-    }
-
-    color: white;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-
-  }
+ 
 </style>

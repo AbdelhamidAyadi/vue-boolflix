@@ -3,10 +3,16 @@
     <header>
       <HeaderComp @search="searchFunction" />
     </header>
-    <main>
-      <MainComp :movies="movies" />
-     
+    <main v-if="success">
+      <MainComp :movies="movies" :series="series" />
+
     </main>
+    <div v-else class="greetings">
+      <div class="greetings_container">
+        <h1>See what's next.</h1>
+        <p>Movie and TV shows Database </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,7 +29,9 @@
     data() {
       return {
         movies: [],
-        search: ""
+        series: [],
+        search: "",
+        success: false
       }
 
     },
@@ -34,16 +42,25 @@
     watch: {
       search: function () {
         let self = this
-        
+        self.success = false
         axios.get(
             `https://api.themoviedb.org/3/search/movie?api_key=4c0444add8d6d33251130b482d242683&language=en-US&page=1&query=${this.search}`,
-            )
+          )
           .then(function (response) {
             self.movies = response.data.results
             console.log(self.movies)
           })
-           
-         
+        axios.get(
+            `https://api.themoviedb.org/3/search/tv?api_key=4c0444add8d6d33251130b482d242683&language=en-US&page=1&query=${this.search}`,
+          )
+          .then(function (response) {
+            self.series = response.data.results
+            console.log(self.series)
+          })
+
+        self.success = true
+
+
       }
     },
     methods: {
@@ -74,12 +91,32 @@
 
   main {
     padding-top: 80px;
-    
+    background-color: #262626;
+    height: 100vh;
+
   }
 
   .body {
-    background-color: #262626;
     min-height: 100vh;
     position: relative;
+  }
+
+  .greetings {
+    color: white;
+    padding-top: 80px;
+    background-image: url('https://xbox-store-checker.com/assets/upload/game/2019/02/optimize/9wzdncrfj3tj-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .greetings_container {
+      h1{
+        font-size: 5rem;
+      }
+    }
+
   }
 </style>
