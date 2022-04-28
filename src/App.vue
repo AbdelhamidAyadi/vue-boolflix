@@ -92,7 +92,7 @@
   main {
     padding-top: 80px;
     background-color: #262626;
-    height: 100vh;
+    min-height: 100vh;
 
   }
 

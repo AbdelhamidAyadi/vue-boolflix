@@ -41,12 +41,13 @@
                   {{element + ','}}
                 </span>
               </div>
-              <div class="info"><span class="title">Attori: </span>
+               <div class="info"><span class="title">Attori: </span>
                
-                <span class="white" v-for="(element , index) in element.actors" :key="index">
-                  {{element + ", "}}
+                <span class="white" v-for="(element , index) in element.actors" :key=" 'x' + index">
+                  {{element + ",  "}}
                 </span>
               </div>
+             
 
             </div>
 
@@ -118,6 +119,7 @@
     methods:{
       seriesF: function() {
         this.series.length != 0
+        return true
       }
     },
     watch: {
